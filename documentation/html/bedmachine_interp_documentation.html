@@ -1,0 +1,252 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>bedmachine_interp documentation</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-01-25"><meta name="DC.source" content="bedmachine_interp_documentation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>bedmachine_interp</tt> documentation</h1><!--introduction--><p><tt>bedmachine_interp</tt> loads data from Morlighem et al.'s <a href="http://sites.uci.edu/morlighem/dataproducts/">BedMachine datasets</a>.</p><p>See also: <a href="bedmachine_documentation.html"><tt>bedmachine</tt></a>, <a href="bedmachine_data_documentation.html"><tt>bedmachine_data</tt></a> and <a href="bedmachine_profile_documentation.html"><tt>bedmachine_profile</tt></a>.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Requirements</a></li><li><a href="#2">Syntax</a></li><li><a href="#3">Description</a></li><li><a href="#4">Example 1: A map in Greenland</a></li><li><a href="#6">Example 2: Compare BedMachine to Bedmap2</a></li><li><a href="#9">Citing this dataset</a></li><li><a href="#10">Author Info</a></li></ul></div><h2 id="1">Requirements</h2><p>This function requires a set of Matlab tools and a Bedmachine dataset, and both will depend on where you're working. Get them here:</p><div><ul><li><b>For Greenland:</b></li></ul></div><div><ol><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/63324">Arctic Mapping Tools</a></li><li><a href="https://nsidc.org/data/IDBMG4">Greenland Bedmachine Data</a></li></ol></div><div><ul><li><b>For Antarctica:</b></li></ul></div><div><ol><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/47638">Antarctic Mapping Tools</a></li><li><a href="https://nsidc.org/data/nsidc-0756">Antarctic Bedmachine Data</a></li></ol></div><h2 id="2">Syntax</h2><pre>zi = bedmachine_interp(variable,lati,loni)
+zi = bedmachine_interp(variable,xi,yi)
+zi = bedmachine_interp(...,IceSheet)
+zi = bedmachine_interp(...,'datum',datum)
+zi = bedmachine_interp(...,'method',InterpMethod)</pre><h2 id="3">Description</h2><p><tt>zi = bedmachine_interp(variable,lati,loni)</tt> interpolates a specified BedMachine <tt>variable</tt> to the given by geo coordinates <tt>lati,loni</tt>. The <tt>variable</tt> can be:</p><div><ul><li><tt>'mask'</tt>      0 = ocean, 1 = ice-free land, 2 = grounded ice, 3 = floating ice, 4 = non-Greenland land</li><li><tt>'surface'</tt>   meters relative to EIGEN-EC4 geoid.</li><li><tt>'thickness'</tt> meters</li><li><tt>'bed'</tt>       meters relative to EIGEN-EC4 geoid.</li><li><tt>'errbed'</tt>    meters</li><li><tt>'source'</tt>    Greenland: 0 = none, 1 = gimpdem, 2 = Mass conservation, 3 = synthetic, 4 = interpolation, 5 = hydrostatic equilibrium, 6 = kriging, 7 = RTOPO-2, 8 = gravity inversion, 10+ = bathymetry data)</li><li><tt>'source'</tt>    Antarctic: 1 = REMA/IBCSO, 2 = Mass conservation, 3 = interpolation, 4 = hydrostatic, 5 = Kriging, 6 = gravity inversion</li><li><tt>'geoid'</tt>     meters above WGS84 ellipsoid</li><li><tt>'base'</tt>      meters base of the ice sheet (bottom of ice shelves, but same as bed over grounded ice.)</li><li><tt>'wct'</tt>       meters water column thickness (derived, not an official BedMachine product.)</li><li><tt>'taf'</tt>       meters thickness above flotation (derived, not an official BedMachine product.)</li><li><tt>'flex'</tt>      dimensionless coefficient of tidal flexure (can slightly exceed 1; see Vaughan 1995 or Holdsworth 1969; derived, not an official BedMachine product; Requires Image Processing Toolbox. )</li><li><tt>'head'</tt>      meters freshwater equivalent, static pressure head (derived, not an official BedMachine product.)</li></ul></div><p><tt>zi = bedmachine_interp(variable,xi,yi)</tt> As above, but for polar stereographic coordinates <tt>xi,yi</tt> in meters (ps70 for Greenland; ps71 for Antarctica). The function automatically determines whether input coordinates are geo or polar stereographic via the <tt>islatlon</tt> function.</p><p><tt>zi = bedmachine_interp(...,IceSheet)</tt> specifies either <tt>'greenland'</tt> or <tt>'antarctica'</tt> (default).</p><p><tt>zi = bedmachine_interp(...,'datum',datum)</tt> specifies a datum as either <tt>'geoid'</tt> (default) or <tt>'ellipsoid'</tt> for wgs84.</p><p><tt>zi = bedmachine_interp(...,'method',InterpMethod)</tt> specifies any interpolation method allowed by the <tt>interp2</tt> function.</p><h2 id="4">Example 1: A map in Greenland</h2><p>Here's a grid centered on Jakobshavn Glacier. The grid is 500 km wide and 800 km tall, at 10 km resolution:</p><pre class="codeinput"><span class="comment">% Create the grid:</span>
+[latgrid,longrid] = psngrid(69.167,-49.833,[500 800],10);
+
+<span class="comment">% Plot the grid as blue dots:</span>
+plotpsn(latgrid,longrid,<span class="string">'b.'</span>)
+
+<span class="comment">% Add som context to the map:</span>
+axis <span class="string">tight</span> <span class="string">off</span>
+h = greenland(<span class="string">'patch'</span>);
+uistack(h,<span class="string">'bottom'</span>) <span class="comment">% sends greeland to the bottom</span>
+mapzoompsn(<span class="string">'ne'</span>,<span class="string">'frame'</span>,<span class="string">'off'</span>)
+scalebarpsn(<span class="string">'location'</span>,<span class="string">'se'</span>)
+</pre><img vspace="5" hspace="5" src="bedmachine_interp_documentation_01.png" alt=""> <p>Get surface elevations at every grid point:</p><pre class="codeinput">zi = bedmachine_interp(<span class="string">'surface'</span>,latgrid,longrid);
+
+<span class="comment">% Plot contours:</span>
+[C,h] = contourpsn(latgrid,longrid,zi,0:250:3000);
+
+<span class="comment">% Label the contour lines:</span>
+clabel(C,h,<span class="string">'labelspacing'</span>,1e3)
+</pre><img vspace="5" hspace="5" src="bedmachine_interp_documentation_02.png" alt=""> <h2 id="6">Example 2: Compare BedMachine to Bedmap2</h2><p>Here's a quick comparison of BedMachine to Bedmap2. Start by loading the <a href="https://www.mathworks.com/matlabcentral/fileexchange/42353">Bedmap2 data</a>, and since Bedmap2 and BedMachine use slightly different geoids, we'll load both to the same common WGS84 ellispoid reference:</p><pre class="codeinput"><span class="comment">% Get coordinates of grounding line:</span>
+[gl_lat,gl_lon] = antbounds_data(<span class="string">'gl'</span>);
+
+<span class="comment">% Only load enough Bedmap2 data to encompass grounding line:</span>
+[lat,lon,bed_b2] = bedmap2_data(<span class="string">'bedw'</span>,gl_lat,gl_lon);
+</pre><p>Now <tt>bedmachine_interp</tt> makes comparison easy (but note, these are massive datasets, so it might take several seconds to a minute to interpolate):</p><pre class="codeinput">bed_BM = bedmachine_interp(<span class="string">'bed'</span>,lat,lon,<span class="string">'datum'</span>,<span class="string">'wgs84'</span>);
+</pre><p>Plot the difference. Below I'm using the <a href="https://www.mathworks.com/matlabcentral/fileexchange/57773"><tt>cmocean</tt></a> (Thyng et al., 2016) <i>balance</i> colormap.</p><pre class="codeinput">figure
+imagesc(bed_BM-bed_b2);
+axis <span class="string">image</span> <span class="string">off</span>
+caxis([-1000 1000])
+cmocean <span class="string">balance</span>
+cb = colorbar;
+ylabel(cb,<span class="string">'BedMachine-Bedmap2 (m)'</span>)
+</pre><img vspace="5" hspace="5" src="bedmachine_interp_documentation_03.png" alt=""> <h2 id="9">Citing this dataset</h2><p>If you use BedMachine data, please cite the Morlighem paper listed below. And if this function is useful for you, please do me a kindness and cite my Antarctic Mapping Tools paper.</p><p>Morlighem M. et al., (2017), BedMachine v3: Complete bed topography and ocean bathymetry mapping of Greenland from multi-beam echo sounding combined with mass conservation, <i>Geophys. Res. Lett.</i>, 44, <a href="http://doi.org/10.1002/2017GL074954">doi:10.1002/2017GL074954</a>.</p><p>Morlighem, M., E. Rignot, T. Binder, D. D. Blankenship, R. Drews, G. Eagles, O. Eisen, F. Ferraccioli, R. Forsberg, P. Fretwell, V. Goel, J. S. Greenbaum, H. Gudmundsson, J. Guo, V. Helm, C. Hofstede, I. Howat, A. Humbert, W. Jokat, N. B. Karlsson, W. Lee, K. Matsuoka, R. Millan, J. Mouginot, J. Paden, F. Pattyn, J. L. Roberts, S. Rosier, A. Ruppel, H. Seroussi, E. C. Smith, D. Steinhage, B. Sun, M. R. van den Broeke, T. van Ommen, M. van Wessem, and D. A. Young. 2019. Deep glacial troughs and stabilizing ridges unveiled beneath the margins of the Antarctic ice sheet, Nature Geoscience. <a href="https://doi.org/10.1038/s41561-019-0510-8">doi:10.1016/j.cageo.2016.08.003</a>.</p><p>Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</p><h2 id="10">Author Info</h2><p>This function and supporting documentation were written by Chad A. Greene of the University of Texas at Austin, October 2018.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |bedmachine_interp| documentation
+% |bedmachine_interp| loads data from Morlighem et al.'s <http://sites.uci.edu/morlighem/dataproducts/ BedMachine datasets>.
+% 
+% See also: <bedmachine_documentation.html |bedmachine|>, <bedmachine_data_documentation.html |bedmachine_data|> and 
+% <bedmachine_profile_documentation.html |bedmachine_profile|>.  
+%% Requirements 
+% This function requires a set of Matlab tools and a Bedmachine dataset, 
+% and both will depend on where you're working. Get them here:  
+%
+% * *For Greenland:*  
+%
+% # <https://www.mathworks.com/matlabcentral/fileexchange/63324 Arctic Mapping Tools> 
+% # <https://nsidc.org/data/IDBMG4 Greenland Bedmachine Data> 
+% 
+% * *For Antarctica:* 
+%
+% # <https://www.mathworks.com/matlabcentral/fileexchange/47638 Antarctic Mapping Tools> 
+% # <https://nsidc.org/data/nsidc-0756 Antarctic Bedmachine Data>
+%
+%% Syntax 
+% 
+%  zi = bedmachine_interp(variable,lati,loni)
+%  zi = bedmachine_interp(variable,xi,yi) 
+%  zi = bedmachine_interp(...,IceSheet) 
+%  zi = bedmachine_interp(...,'datum',datum) 
+%  zi = bedmachine_interp(...,'method',InterpMethod) 
+% 
+%% Description 
+% 
+% |zi = bedmachine_interp(variable,lati,loni)| interpolates a specified 
+% BedMachine |variable| to the given by geo coordinates |lati,loni|. The 
+% |variable| can be: 
+%
+% * |'mask'|      0 = ocean, 1 = ice-free land, 2 = grounded ice, 3 = floating ice, 4 = non-Greenland land
+% * |'surface'|   meters relative to EIGEN-EC4 geoid.
+% * |'thickness'| meters
+% * |'bed'|       meters relative to EIGEN-EC4 geoid.
+% * |'errbed'|    meters 
+% * |'source'|    Greenland: 0 = none, 1 = gimpdem, 2 = Mass conservation, 3 = synthetic, 4 = interpolation, 5 = hydrostatic equilibrium, 6 = kriging, 7 = RTOPO-2, 8 = gravity inversion, 10+ = bathymetry data)
+% * |'source'|    Antarctic: 1 = REMA/IBCSO, 2 = Mass conservation, 3 = interpolation, 4 = hydrostatic, 5 = Kriging, 6 = gravity inversion
+% * |'geoid'|     meters above WGS84 ellipsoid
+% * |'base'|      meters base of the ice sheet (bottom of ice shelves, but same as bed over grounded ice.) 
+% * |'wct'|       meters water column thickness (derived, not an official BedMachine product.) 
+% * |'taf'|       meters thickness above flotation (derived, not an official BedMachine product.) 
+% * |'flex'|      dimensionless coefficient of tidal flexure (can slightly exceed 1; see Vaughan 1995 or Holdsworth 1969; derived, not an official BedMachine product; Requires Image Processing Toolbox. ) 
+% * |'head'|      meters freshwater equivalent, static pressure head (derived, not an official BedMachine product.)    
+%
+% |zi = bedmachine_interp(variable,xi,yi)| As above, but for polar stereographic coordinates
+% |xi,yi| in meters (ps70 for Greenland; ps71 for Antarctica). The function automatically 
+% determines whether input coordinates are geo or polar stereographic via the |islatlon| function. 
+% 
+% |zi = bedmachine_interp(...,IceSheet)| specifies either |'greenland'|
+% or |'antarctica'| (default). 
+% 
+% |zi = bedmachine_interp(...,'datum',datum)| specifies a datum as either |'geoid'| (default) 
+% or |'ellipsoid'| for wgs84. 
+% 
+% |zi = bedmachine_interp(...,'method',InterpMethod)| specifies any interpolation method allowed by 
+% the |interp2| function. 
+% 
+%% Example 1: A map in Greenland
+% Here's a grid centered on Jakobshavn Glacier. The grid is 500 km wide and 800 km
+% tall, at 10 km resolution: 
+
+% Create the grid: 
+[latgrid,longrid] = psngrid(69.167,-49.833,[500 800],10);
+
+% Plot the grid as blue dots: 
+plotpsn(latgrid,longrid,'b.')
+
+% Add som context to the map: 
+axis tight off
+h = greenland('patch'); 
+uistack(h,'bottom') % sends greeland to the bottom
+mapzoompsn('ne','frame','off')
+scalebarpsn('location','se') 
+
+%% 
+% Get surface elevations at every grid point: 
+
+zi = bedmachine_interp('surface',latgrid,longrid); 
+
+% Plot contours: 
+[C,h] = contourpsn(latgrid,longrid,zi,0:250:3000);
+
+% Label the contour lines: 
+clabel(C,h,'labelspacing',1e3)
+
+%% Example 2: Compare BedMachine to Bedmap2 
+% Here's a quick comparison of BedMachine to Bedmap2. Start by loading the 
+% <https://www.mathworks.com/matlabcentral/fileexchange/42353 Bedmap2 data>, 
+% and since Bedmap2 and BedMachine use slightly different geoids, we'll load
+% both to the same common WGS84 ellispoid reference: 
+
+% Get coordinates of grounding line: 
+[gl_lat,gl_lon] = antbounds_data('gl'); 
+
+% Only load enough Bedmap2 data to encompass grounding line:
+[lat,lon,bed_b2] = bedmap2_data('bedw',gl_lat,gl_lon);
+
+%% 
+% Now |bedmachine_interp| makes comparison easy (but note, these are massive
+% datasets, so it might take several seconds to a minute to interpolate): 
+
+bed_BM = bedmachine_interp('bed',lat,lon,'datum','wgs84'); 
+
+%% 
+% Plot the difference. Below I'm using the <https://www.mathworks.com/matlabcentral/fileexchange/57773 |cmocean|> 
+% (Thyng et al., 2016) _balance_ colormap. 
+
+figure
+imagesc(bed_BM-bed_b2); 
+axis image off
+caxis([-1000 1000]) 
+cmocean balance
+cb = colorbar; 
+ylabel(cb,'BedMachine-Bedmap2 (m)')
+
+%% Citing this dataset
+% If you use BedMachine data, please cite the Morlighem paper listed below. 
+% And if this function is useful for you, please do me a kindness and cite 
+% my Antarctic Mapping Tools paper. 
+% 
+% Morlighem M. et al., (2017), BedMachine v3: Complete bed topography and ocean 
+% bathymetry mapping of Greenland from multi-beam echo sounding combined with
+% mass conservation, _Geophys. Res. Lett._, 44, <http://doi.org/10.1002/2017GL074954 doi:10.1002/2017GL074954>. 
+% 
+% Morlighem, M., E. Rignot, T. Binder, D. D. Blankenship, R. Drews, G. Eagles,
+% O. Eisen, F. Ferraccioli, R. Forsberg, P. Fretwell, V. Goel, J. S. Greenbaum, H. 
+% Gudmundsson, J. Guo, V. Helm, C. Hofstede, I. Howat, A. Humbert, W. Jokat, N. B. 
+% Karlsson, W. Lee, K. Matsuoka, R. Millan, J. Mouginot, J. Paden, F. Pattyn, J. L. Roberts,
+% S. Rosier, A. Ruppel, H. Seroussi, E. C. Smith, D. Steinhage, B. Sun, M. R. van den Broeke, 
+% T. van Ommen, M. van Wessem, and D. A. Young. 2019. Deep glacial troughs and stabilizing 
+% ridges unveiled beneath the margins of the Antarctic ice sheet, Nature Geoscience.
+% <https://doi.org/10.1038/s41561-019-0510-8 doi:10.1016/j.cageo.2016.08.003>.
+% 
+% Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools  
+% for Matlab. _Computers & Geosciences_. 104 (2017) pp.151-157. 
+% <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This function and supporting documentation were written by Chad A. Greene
+% of the University of Texas at Austin, October 2018. 
+
+##### SOURCE END #####
+--></body></html>

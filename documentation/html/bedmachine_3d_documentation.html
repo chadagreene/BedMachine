@@ -1,0 +1,558 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>bedmachine_3d documentation</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-10"><meta name="DC.source" content="bedmachine_3d_documentation.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1><tt>bedmachine_3d documentation</tt></h1><!--introduction--><p><tt>bedmachine_3d</tt> creates a 3D map of BedMachine data.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Requirements</a></li><li><a href="#2">Syntax</a></li><li><a href="#3">Description</a></li><li><a href="#4">Example 1: Antarctic Peninsula</a></li><li><a href="#5">Setting view orientation</a></li><li><a href="#7">Bathymetry colormap</a></li><li><a href="#8">Example 2: Amery Ice Shelf</a></li><li><a href="#10">Vertical exaggeration</a></li><li><a href="#11">Example 3: Pine Island Glacier</a></li><li><a href="#13">Ice Transparency</a></li><li><a href="#14">Example 4: Getz Ice Shelf</a></li><li><a href="#17">Example 5: Greenland</a></li><li><a href="#20">Example 6: Denman Glacier</a></li><li><a href="#23">Specifying object properties</a></li><li><a href="#24">Example 7: Advanced options</a></li><li><a href="#29">Extra tips</a></li><li><a href="#30">Known issues</a></li><li><a href="#31">Citing this dataset</a></li><li><a href="#32">Author Info</a></li></ul></div><h2 id="1">Requirements</h2><p>This function requires a set of Matlab tools and a Bedmachine dataset, and both will depend on where you're working. Get them here:</p><div><ul><li>For Greenland: * Arctic Mapping Tools: <a href="https://www.mathworks.com/matlabcentral/fileexchange/63324">https://www.mathworks.com/matlabcentral/fileexchange/63324</a> Greenland Bedmachine Data: <a href="https://nsidc.org/data/IDBMG4">https://nsidc.org/data/IDBMG4</a></li></ul></div><div><ul><li>For Antarctica: * Antarctic Mapping Tools: <a href="https://www.mathworks.com/matlabcentral/fileexchange/47638">https://www.mathworks.com/matlabcentral/fileexchange/47638</a> Antarctic Bedmachine Data: <a href="https://nsidc.org/data/nsidc-0756">https://nsidc.org/data/nsidc-0756</a></li></ul></div><h2 id="2">Syntax</h2><pre>bedmachine_3d(latlim,lonlim)
+bedmachine_3d(xlim,ylim)
+bedmachine_3d(...,'buffer',extrakm)
+bedmachine_3d(...,'alpha',iceAlpha)
+bedmachine_3d(...,'greenland')
+h = bedmachine_3d(...)</pre><h2 id="3">Description</h2><p><tt>bedmachine_3d(latlim,lonlim)</tt> creates a 3D map of the region specified by latitude and longitude limits. <tt>latlim</tt> and <tt>lonlin</tt> can be two-element arrays to specify just the min and max extents, or <tt>latlim,lonlim</tt> can be a range of values, and the resulting map will cover the entire range. Plotting might be slow for very large areas, so start small and see what your computer can handle.</p><p><tt>bedmachine_3d(xlim,ylim)</tt> as above, but map extents are specified by polar stereographic meters.</p><p><tt>bedmachine_3d(...,'buffer',extrakm)</tt> adds a buffer of specified width in kilometers around the region of interest.</p><p><tt>bedmachine_3d(...,'alpha',iceAlpha)</tt> sets the transparency of the ice. By default, <tt>iceAlpha=1</tt>, meaning fully opaque. Use a value between 0 and 1 for semitransparent ice.</p><p><tt>bedmachine_3d(...,'greenland')</tt> plots Greenland instead of the default Antarctica.</p><p><tt>h = bedmachine_3d(...)</tt> returns a structure of all the object graphical handles.</p><h2 id="4">Example 1: Antarctic Peninsula</h2><p>To make a map of any region of interest, you can simply enter the spatial extents of any region. You can enter coordinate in polar stereographic meters, or geographic (lat,lon). Here we'll use meters:</p><pre class="codeinput">bedmachine_3d([-3000000 -1859450],[1881970 391935])
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_01.png" alt=""> <h2 id="5">Setting view orientation</h2><p>You can manually pan and rotate the map using the interactive figure tools, or you can use the <tt>view</tt> function to set the azimuth and elevation angles of the viewing angle, like this:</p><pre class="codeinput">view(75,7)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_02.png" alt=""> <p>Turn it into a 2D map like this:</p><pre class="codeinput">view(2)
+
+scalebarps(<span class="string">'color'</span>,<span class="string">'w'</span>)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_03.png" alt=""> <h2 id="7">Bathymetry colormap</h2><p>By default, the <tt>bedmachine_3d</tt> function attempts to use the topo colormap from the <tt>cmocean</tt> function, which is available on the Mathworks File Exchange as a standalone function, or as part of the Climate Data Toolbox for Matlab. If you don't have the <tt>cmocean</tt> function, your default colormap will be used for bathymetry.</p><p>To set the extents of the bathymetry color axis, simply use the <tt>caxis</tt> command. Suggestion: Enter values that are symmetric about zero to sea level in the center of the color scale:</p><pre class="codeinput">caxis([-1 1]*1500)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_04.png" alt=""> <h2 id="8">Example 2: Amery Ice Shelf</h2><p>Instead of entering the spatial extents of your region of interest in polar stereographic meters, you may alternatively use geographic coordinates:</p><pre class="codeinput">lat = [-75.36 -65.30];
+lon = [63.64  65.18];
+
+figure
+bedmachine_3d(lat,lon);
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_05.png" alt=""> <p>Change the orientation to your liking:</p><pre class="codeinput">view(70.5,11)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_06.png" alt=""> <h2 id="10">Vertical exaggeration</h2><p>By default, <tt>bedmachine_3d</tt> plots at 20x vertical exaggeration. To change this, set the third value in the data aspect ratio using the <tt>daspect</tt> command. Here we'll change it to 100x exaggeration by specifying 1/100:</p><pre class="codeinput">daspect([1 1 1/100])
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_07.png" alt=""> <h2 id="11">Example 3: Pine Island Glacier</h2><p>If you don't know the coordinates of the extents of the map you'd like to generate, but you know what feature you want at the center, use the <tt>scarloc</tt> function to get the center coordinates:</p><pre class="codeinput">[piglatin,piglon] = scarloc(<span class="string">'pine island glacier'</span>)
+</pre><pre class="codeoutput">piglatin =
+  -75.1667
+piglon =
+  -100
+</pre><p>With just the center coordinates, you can add a buffer on all sides of the center coordinates. For example, adding 500 km buffer on all sides of the center location of PIG, we'll get a 1000x1000 km map:</p><pre class="codeinput">figure
+
+bedmachine_3d(piglatin,piglon,<span class="string">'buffer'</span>,500);
+
+view(29,42)
+caxis([-1 1]*2000)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_08.png" alt=""> <h2 id="13">Ice Transparency</h2><p>You can make the ice semitransparent by specifying a value of alpha between 0 (invisible) and 1 (opaque):</p><pre class="codeinput">[piglatin,piglon] = scarloc(<span class="string">'pine island glacier'</span>);
+
+figure
+
+bedmachine_3d(piglatin,piglon,<span class="keyword">...</span><span class="comment"> % center coordinates</span>
+   <span class="string">'buffer'</span>,500,<span class="keyword">...</span><span class="comment"> % 500 km on all sides (a 1000x1000 km map)</span>
+   <span class="string">'alpha'</span>,0.5);    <span class="comment">% semitransparent ice</span>
+
+view(29,42)
+caxis([-1 1]*2000)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_09.png" alt=""> <h2 id="14">Example 4: Getz Ice Shelf</h2><p>Another way to enter the location of interest is simply to enter <i>all</i> of the coordinates of the area you want to plot. For example, if you want a map that fully encompasses the Getz Ice Shelf, use <tt>antbounds_data</tt> to get the outline of the ice shelf:</p><pre class="codeinput">[lat,lon] = antbounds_data(<span class="string">'getz'</span>);
+
+figure
+plotps(lat,lon)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_10.png" alt=""> <p>With the coordinates of the outline of Getz, we can now make a 3D map of Getz Ice Shelf. Add a buffer of 100 km on all sides for good measure:</p><pre class="codeinput">figure
+
+bedmachine_3d(lat,lon,<span class="string">'buffer'</span>,100);
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_11.png" alt=""> <p>And again, we can change the transparency:</p><pre class="codeinput">figure
+
+bedmachine_3d(lat,lon,<span class="string">'buffer'</span>,100,<span class="string">'alpha'</span>,0.6);
+caxis([-1 1]*2500)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_12.png" alt=""> <h2 id="17">Example 5: Greenland</h2><p>Greenland works the same way as Antarctica, but a word of caution: Although Greenland is smaller than Antarctica, the Greenland BedMachine dataset is much higher resolution, so plotting large areas might be slow!</p><p>Here let's start by getting oriented. Assuming you have Arctic Mapping Tools, draw an outline of Greenland, and then add a yline at top of the map we'll generate, and a place a vertical line to demark the left side of our region of interest:</p><pre class="codeinput">figure
+greenland
+
+yline(-3e6)
+xline(-0.5e6)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_13.png" alt=""> <p>With the x and y coordinates shown as straight lines in the map above, enter the extents of the bottom right quadrant of that map. Use <tt>Inf</tt> to say we want all the data to the edge of the BedMachine dataset.</p><p>I reiterate, this a small portion of Greenland, but due to the high resolution, this takes about 10 seconds for my laptop to render:</p><pre class="codeinput">figure
+bedmachine_3d([-0.5e6 Inf],[-Inf -3e6],<span class="string">'greenland'</span>)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_14.png" alt=""> <p>Get a different perspective:</p><pre class="codeinput">view(-143,32)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_15.png" alt=""> <h2 id="20">Example 6: Denman Glacier</h2><p>In this example, we'll explore how to set specific properties of the graphics objects. Start by plotting 3D map of Denman Glacier, and return a handle <tt>h</tt> of the graphics objects:</p><pre class="codeinput">[lat,lon] = scarloc(<span class="string">'denman glacier'</span>);
+
+figure
+h = bedmachine_3d(lat,lon,<span class="string">'bufer'</span>,300,<span class="string">'alpha'</span>,0.6);
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_16.png" alt=""> <p>Take a look at the contents of <tt>h</tt>:</p><pre class="codeinput">h
+</pre><pre class="codeoutput">h = 
+  struct with fields:
+
+          bed: [1&times;1 Surface]
+         base: [1&times;1 Surface]
+          sfz: [1&times;1 Surface]
+      iceside: [1&times;1 Surface]
+      bedside: [1&times;1 Surface]
+     oceansfz: [1&times;1 Patch]
+    oceanside: [1&times;1 Surface]
+       corner: [1&times;4 Graphics]
+</pre><p>Above, you see that the bed is plotted as a surface object, the top and sides of the ice sheet are plotted as surfaces, the top of the ocean is plotted as a patch object, and there are four vertical lines that mark the corners of the ocean.</p><p>You can query or change the properties of each object however you'd like. For example, if you'd like to know how transparent the ocean surface is, check the <tt>FaceAlpha</tt> value, like this:</p><pre class="codeinput">h.oceansfz.FaceAlpha
+</pre><pre class="codeoutput">ans =
+    0.1000
+</pre><h2 id="23">Specifying object properties</h2><p>To change any object property, simply set it to your liking. Here we'll make the top and sides of the ocean more opaque, and we'll use my <tt>rgb</tt> function (available on File Exchange; also part of the Climate Data Toolbox) to make the ocean orange:</p><pre class="codeinput">h.oceansfz.FaceAlpha = 0.6;
+h.oceanside.FaceAlpha = 0.6;
+h.oceansfz.FaceColor = rgb(<span class="string">'orange'</span>);
+h.oceanside.FaceColor = rgb(<span class="string">'orange'</span>);
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_17.png" alt=""> <h2 id="24">Example 7: Advanced options</h2><p>In this example, we'll start with a map of the Filchner Ice Shelf:</p><pre class="codeinput">[lat,lon] = antbounds_data(<span class="string">'filchner'</span>);
+
+figure
+h = bedmachine_3d(lat,lon,<span class="string">'bufer'</span>,50,<span class="string">'alpha'</span>,0.4);
+view(-122,37)
+caxis([-1 1]*1400)
+
+<span class="comment">% Make the base of the ice shelf extra transparent:</span>
+h.base.FaceAlpha = 0.2;
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_18.png" alt=""> <p>Looks pretty good. Now what if we wanted to depict basal melt rates? That data should be shown nowhere else but the base of the ice shelf, right? The good news is the base of the ice shelf is plotted as a surface object, so it's easy to add melt rates as CData.</p><p>Unfortunately, Matlab only lets us use one active colormap at a time, so plotting color-scaled bed topography along with color-scaled melt rates will be difficult. One solution: Convert either the color scaling of the basal topography or the melt rates to a static RGB image.</p><p>Start by converting basal topography colormap to a static image:</p><pre class="codeinput"><span class="comment">% Get the bed elevation data:</span>
+bed = h.bed.ZData;
+
+<span class="comment">% Convert to a grayscale matrix:</span>
+bed_gray = mat2gray(bed,[-1 1]*1400);
+
+<span class="comment">% Index the grayscale matrix to the topo colormap:</span>
+cmap = cmocean(<span class="string">'topo'</span>);
+ind = gray2ind(bed_gray,size(cmap,1));
+bed_RGB = reshape(cmap(ind+1,:),[size(bed,1) size(bed,2) 3]);
+
+<span class="comment">% Change the bed color data to a static texturemap:</span>
+h.bed.CData = bed_RGB;
+h.bed.FaceColor = <span class="string">'texturemap'</span>;
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_19.png" alt=""> <p>Now the bed color is no longer tied to the current colormap. You can change the color axis limits or the colormap without affecting how the bed looks. And that's what we will do.</p><p>Now we will use <tt>melt_interp_adusumilli</tt> (available on File Exchange) to interpolate melt rates published by Adusumilli et al. 2020:</p><pre class="codeinput"><span class="comment">% Get surface grid coordinates:</span>
+x = h.base.XData;
+y = h.base.YData;
+
+<span class="comment">% Convert arrays to grids:</span>
+[X,Y] = meshgrid(x,y);
+
+<span class="comment">% Get melt rates corresponding to the grid:</span>
+melt = melt_interp_adusumilli(X,Y);
+</pre><p>Now we can set the color data of the ice shelf to the basal melt rates, and change the colormap accordingly:</p><pre class="codeinput">h.base.CData = melt;
+h.base.FaceColor = <span class="string">'texturemap'</span>;
+h.base.FaceAlpha = .9;
+
+caxis([-3 3])
+cmocean <span class="string">balance</span>
+cb = colorbar;
+ylabel(cb,<span class="string">'melt rate (m/yr)'</span>)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_20.png" alt=""> <p>Or of course you can always change it to a 2D view:</p><pre class="codeinput">view(2)
+</pre><img vspace="5" hspace="5" src="bedmachine_3d_documentation_21.png" alt=""> <h2 id="29">Extra tips</h2><div><ul><li>For a slightly better appearance, try setting</li></ul></div><pre>lighting phong</pre><p>which I find gives a more natural feel. However, phong lighting is slow when graphics are complex, especially if the region you're plotting is large. If you use phong lighting set it at the very end, just before you save the image. That way you won't have to deal with its sluggishness while you tinker with the viewing angle or whatnot.</p><div><ul><li>Export at high resolution. I still like <tt>export_fig</tt> best, but now Matlab at least lets you specify the resolution when using the <tt>print</tt> command. Do that. Export using <i>at least</i> 300 dpi. Maybe even 500 or 600. I really don't understand the argument in favor of low-res graphics.</li></ul></div><h2 id="30">Known issues</h2><div><ul><li>The function currently only plots the primary (largest) ice mass within the extents of any given map.</li><li>Depending on the spatial extents of the map, the function sometimes has difficulty finding the proper outline of the ocean. In such cases, the surface of the ocean may vanish. In such cases, you can either adjust the extents of the map a little bit, or you can try to track down potential NaNs in the outline of the ocean surface.</li></ul></div><h2 id="31">Citing this dataset</h2><p>If you use BedMachine data, please cite the Morlighem paper listed below. And if this function is useful for you, please do me a kindness and cite my Antarctic Mapping Tools paper.</p><p>Morlighem M. et al., (2017), BedMachine v3: Complete bed topography and ocean bathymetry mapping of Greenland from multi-beam echo sounding combined with mass conservation, <i>Geophys. Res. Lett.</i>, 44, <a href="http://doi.org/10.1002/2017GL074954">doi:10.1002/2017GL074954</a>.</p><p>Morlighem, M., E. Rignot, T. Binder, D. D. Blankenship, R. Drews, G. Eagles, O. Eisen, F. Ferraccioli, R. Forsberg, P. Fretwell, V. Goel, J. S. Greenbaum, H. Gudmundsson, J. Guo, V. Helm, C. Hofstede, I. Howat, A. Humbert, W. Jokat, N. B. Karlsson, W. Lee, K. Matsuoka, R. Millan, J. Mouginot, J. Paden, F. Pattyn, J. L. Roberts, S. Rosier, A. Ruppel, H. Seroussi, E. C. Smith, D. Steinhage, B. Sun, M. R. van den Broeke, T. van Ommen, M. van Wessem, and D. A. Young. 2019. Deep glacial troughs and stabilizing ridges unveiled beneath the margins of the Antarctic ice sheet, Nature Geoscience. <a href="https://doi.org/10.1038/s41561-019-0510-8">doi:10.1016/j.cageo.2016.08.003</a>.</p><p>Greene, C. A., Gwyther, D. E., &amp; Blankenship, D. D. Antarctic Mapping Tools for Matlab. <i>Computers &amp; Geosciences</i>. 104 (2017) pp.151-157. <a href="http://dx.doi.org/10.1016/j.cageo.2016.08.003">doi:10.1016/j.cageo.2016.08.003</a>.</p><h2 id="32">Author Info</h2><p>This function and supporting documentation were written by Chad A. Greene of NASA Jet Propulsion Laboratory, April 2021.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |bedmachine_3d documentation|
+% |bedmachine_3d| creates a 3D map of BedMachine data. 
+% 
+%% Requirements 
+% This function requires a set of Matlab tools and a Bedmachine dataset, 
+% and both will depend on where you're working. Get them here:  
+%
+% * For Greenland: * 
+% Arctic Mapping Tools: https://www.mathworks.com/matlabcentral/fileexchange/63324
+% Greenland Bedmachine Data: https://nsidc.org/data/IDBMG4
+% 
+% * For Antarctica: *
+% Antarctic Mapping Tools: https://www.mathworks.com/matlabcentral/fileexchange/47638
+% Antarctic Bedmachine Data: https://nsidc.org/data/nsidc-0756
+% 
+%% Syntax 
+% 
+%  bedmachine_3d(latlim,lonlim)
+%  bedmachine_3d(xlim,ylim)
+%  bedmachine_3d(...,'buffer',extrakm)
+%  bedmachine_3d(...,'alpha',iceAlpha)
+%  bedmachine_3d(...,'greenland')
+%  h = bedmachine_3d(...)
+% 
+%% Description 
+%
+% |bedmachine_3d(latlim,lonlim)| creates a 3D map of the region specified by 
+% latitude and longitude limits. |latlim| and |lonlin| can be two-element arrays 
+% to specify just the min and max extents, or |latlim,lonlim| can be a range 
+% of values, and the resulting map will cover the entire range. Plotting might 
+% be slow for very large areas, so start small and see what your computer can 
+% handle. 
+%
+% |bedmachine_3d(xlim,ylim)| as above, but map extents are specified by polar 
+% stereographic meters. 
+%
+% |bedmachine_3d(...,'buffer',extrakm)| adds a buffer of specified width in 
+% kilometers around the region of interest. 
+%
+% |bedmachine_3d(...,'alpha',iceAlpha)| sets the transparency of the ice. By default, 
+% |iceAlpha=1|, meaning fully opaque. Use a value between 0 and 1 for semitransparent
+% ice. 
+%
+% |bedmachine_3d(...,'greenland')| plots Greenland instead of the default Antarctica. 
+%
+% |h = bedmachine_3d(...)| returns a structure of all the object graphical handles. 
+%
+%% Example 1: Antarctic Peninsula 
+% To make a map of any region of interest, you can simply enter the spatial
+% extents of any region. You can enter coordinate in polar stereographic meters, 
+% or geographic (lat,lon). Here we'll use meters: 
+
+bedmachine_3d([-3000000 -1859450],[1881970 391935])
+
+%% Setting view orientation
+% You can manually pan and rotate the map using the interactive figure tools, 
+% or you can use the |view| function to set the azimuth and elevation angles of the 
+% viewing angle, like this:
+
+view(75,7)
+
+%%
+% Turn it into a 2D map like this:
+
+view(2)
+
+scalebarps('color','w')
+
+%% Bathymetry colormap
+% By default, the |bedmachine_3d| function attempts to use the topo colormap
+% from the |cmocean| function, which is available on the Mathworks File Exchange 
+% as a standalone function, or as part of the Climate Data Toolbox for Matlab. 
+% If you don't have the |cmocean| function, your default colormap will be used for bathymetry. 
+% 
+% To set the extents of the bathymetry color axis, simply use the |caxis| 
+% command. Suggestion: Enter values that are symmetric about zero to sea 
+% level in the center of the color scale: 
+
+caxis([-1 1]*1500)
+
+%% Example 2: Amery Ice Shelf
+% Instead of entering the spatial extents of your region of interest in 
+% polar stereographic meters, you may alternatively use geographic coordinates: 
+
+lat = [-75.36 -65.30];
+lon = [63.64  65.18];
+
+figure
+bedmachine_3d(lat,lon);
+
+%%
+% Change the orientation to your liking: 
+
+view(70.5,11)
+
+%% Vertical exaggeration
+% By default, |bedmachine_3d| plots at 20x vertical exaggeration. To change 
+% this, set the third value in the data aspect ratio using the |daspect| command. 
+% Here we'll change it to 100x exaggeration by specifying 1/100:
+
+daspect([1 1 1/100]) 
+
+%% Example 3: Pine Island Glacier 
+% If you don't know the coordinates of the extents of the map you'd like 
+% to generate, but you know what feature you want at the center, use the 
+% |scarloc| function to get the center coordinates:
+
+[piglatin,piglon] = scarloc('pine island glacier')
+
+%%
+% With just the center coordinates, you can add a buffer on all sides of the 
+% center coordinates. For example, adding 500 km buffer on all sides of 
+% the center location of PIG, we'll get a 1000x1000 km map: 
+
+figure
+
+bedmachine_3d(piglatin,piglon,'buffer',500);
+
+view(29,42)
+caxis([-1 1]*2000)
+
+%% Ice Transparency 
+% You can make the ice semitransparent by specifying a value of alpha 
+% between 0 (invisible) and 1 (opaque):
+
+[piglatin,piglon] = scarloc('pine island glacier');
+
+figure
+
+bedmachine_3d(piglatin,piglon,... % center coordinates
+   'buffer',500,... % 500 km on all sides (a 1000x1000 km map)
+   'alpha',0.5);    % semitransparent ice 
+
+view(29,42)
+caxis([-1 1]*2000)
+
+%% Example 4: Getz Ice Shelf 
+% Another way to enter the location of interest is simply to enter _all_ of the 
+% coordinates of the area you want to plot. For example, if you want a map that
+% fully encompasses the Getz Ice Shelf, use |antbounds_data| to get the outline
+% of the ice shelf: 
+
+[lat,lon] = antbounds_data('getz'); 
+
+figure
+plotps(lat,lon) 
+
+%% 
+% With the coordinates of the outline of Getz, we can now make a 3D map of 
+% Getz Ice Shelf. Add a buffer of 100 km on all sides for good measure: 
+
+figure
+
+bedmachine_3d(lat,lon,'buffer',100);
+
+%%
+% And again, we can change the transparency: 
+
+figure
+
+bedmachine_3d(lat,lon,'buffer',100,'alpha',0.6);
+caxis([-1 1]*2500)
+
+%% Example 5: Greenland 
+% Greenland works the same way as Antarctica, but a word of caution: Although 
+% Greenland is smaller than Antarctica, the Greenland BedMachine dataset is much
+% higher resolution, so plotting large areas might be slow! 
+% 
+% Here let's start by getting oriented. Assuming you have Arctic Mapping Tools, 
+% draw an outline of Greenland, and then add a yline at top of the map we'll 
+% generate, and a place a vertical line to demark the left side of our region
+% of interest:
+
+figure 
+greenland 
+
+yline(-3e6)
+xline(-0.5e6)
+
+%%
+% With the x and y coordinates shown as straight lines in the map above, 
+% enter the extents of the bottom right quadrant of that map. Use |Inf| to 
+% say we want all the data to the edge of the BedMachine dataset. 
+% 
+% I reiterate, this a small portion of Greenland, but due to the high resolution, 
+% this takes about 10 seconds for my laptop to render: 
+
+figure
+bedmachine_3d([-0.5e6 Inf],[-Inf -3e6],'greenland')
+
+%% 
+% Get a different perspective: 
+
+view(-143,32)
+
+%% Example 6: Denman Glacier 
+% In this example, we'll explore how to set specific properties of the graphics objects. 
+% Start by plotting 3D map of Denman Glacier, and return a handle |h| of the 
+% graphics objects: 
+
+[lat,lon] = scarloc('denman glacier'); 
+
+figure
+h = bedmachine_3d(lat,lon,'bufer',300,'alpha',0.6); 
+
+%%
+% Take a look at the contents of |h|: 
+
+h
+
+%% 
+% Above, you see that the bed is plotted as a surface object, the top and sides
+% of the ice sheet are plotted as surfaces, the top of the ocean is plotted as 
+% a patch object, and there are four vertical lines that mark the corners of the 
+% ocean. 
+% 
+% You can query or change the properties of each object however you'd like. For
+% example, if you'd like to know how transparent the ocean surface is, check 
+% the |FaceAlpha| value, like this: 
+
+h.oceansfz.FaceAlpha 
+
+%% Specifying object properties 
+% To change any object property, simply set it to your liking. Here we'll make
+% the top and sides of the ocean more opaque, and we'll use my |rgb| function 
+% (available on File Exchange; also part of the Climate Data Toolbox) to make 
+% the ocean orange: 
+
+h.oceansfz.FaceAlpha = 0.6; 
+h.oceanside.FaceAlpha = 0.6; 
+h.oceansfz.FaceColor = rgb('orange'); 
+h.oceanside.FaceColor = rgb('orange'); 
+
+%% Example 7: Advanced options
+% In this example, we'll start with a map of the Filchner Ice Shelf: 
+
+[lat,lon] = antbounds_data('filchner'); 
+
+figure
+h = bedmachine_3d(lat,lon,'bufer',50,'alpha',0.4); 
+view(-122,37)
+caxis([-1 1]*1400)
+
+% Make the base of the ice shelf extra transparent: 
+h.base.FaceAlpha = 0.2;
+
+%%
+% Looks pretty good. Now what if we wanted to depict basal melt rates? That 
+% data should be shown nowhere else but the base of the ice shelf, right? 
+% The good news is the base of the ice shelf is plotted as a surface object, 
+% so it's easy to add melt rates as CData. 
+% 
+% Unfortunately, Matlab only lets us use one active colormap at a time, so 
+% plotting color-scaled bed topography along with color-scaled melt rates 
+% will be difficult. One solution: Convert either the color scaling of the 
+% basal topography or the melt rates to a static RGB image. 
+% 
+% Start by converting basal topography colormap to a static image: 
+
+% Get the bed elevation data: 
+bed = h.bed.ZData; 
+
+% Convert to a grayscale matrix: 
+bed_gray = mat2gray(bed,[-1 1]*1400); 
+
+% Index the grayscale matrix to the topo colormap:  
+cmap = cmocean('topo'); 
+ind = gray2ind(bed_gray,size(cmap,1));
+bed_RGB = reshape(cmap(ind+1,:),[size(bed,1) size(bed,2) 3]);
+
+% Change the bed color data to a static texturemap: 
+h.bed.CData = bed_RGB; 
+h.bed.FaceColor = 'texturemap'; 
+
+%%
+% Now the bed color is no longer tied to the current colormap. You can change 
+% the color axis limits or the colormap without affecting how the bed looks. 
+% And that's what we will do. 
+% 
+% Now we will use |melt_interp_adusumilli| (available on File Exchange) to interpolate 
+% melt rates published by Adusumilli et al. 2020:
+
+% Get surface grid coordinates: 
+x = h.base.XData; 
+y = h.base.YData; 
+
+% Convert arrays to grids: 
+[X,Y] = meshgrid(x,y); 
+
+% Get melt rates corresponding to the grid: 
+melt = melt_interp_adusumilli(X,Y); 
+
+%% 
+% Now we can set the color data of the ice shelf to the basal melt rates, and
+% change the colormap accordingly: 
+
+h.base.CData = melt; 
+h.base.FaceColor = 'texturemap'; 
+h.base.FaceAlpha = .9; 
+
+caxis([-3 3]) 
+cmocean balance 
+cb = colorbar; 
+ylabel(cb,'melt rate (m/yr)') 
+
+%%
+% Or of course you can always change it to a 2D view: 
+
+view(2)
+
+%% Extra tips 
+% 
+% * For a slightly better appearance, try setting 
+% 
+%  lighting phong
+% 
+% which I find gives a more natural feel. However, phong lighting is 
+% slow when graphics are complex, especially if the region you're plotting 
+% is large. If you use phong lighting set it at the very end, just before you
+% save the image. That way you won't have to deal with its sluggishness while 
+% you tinker with the viewing angle or whatnot. 
+% 
+% * Export at high resolution. I still like |export_fig| best, but now Matlab
+% at least lets you specify the resolution when using the |print| command. Do 
+% that. Export using _at least_ 300 dpi. Maybe even 500 or 600. I really don't 
+% understand the argument in favor of low-res graphics. 
+
+%% Known issues 
+% * The function currently only plots the primary (largest) ice mass within 
+% the extents of any given map. 
+% * Depending on the spatial extents of the map, the function sometimes has 
+% difficulty finding the proper outline of the ocean. In such cases, the surface
+% of the ocean may vanish. In such cases, you can either adjust the extents of 
+% the map a little bit, or you can try to track down potential NaNs in the outline
+% of the ocean surface. 
+% 
+%% Citing this dataset
+% If you use BedMachine data, please cite the Morlighem paper listed below. 
+% And if this function is useful for you, please do me a kindness and cite 
+% my Antarctic Mapping Tools paper. 
+% 
+% Morlighem M. et al., (2017), BedMachine v3: Complete bed topography and ocean 
+% bathymetry mapping of Greenland from multi-beam echo sounding combined with
+% mass conservation, _Geophys. Res. Lett._, 44, <http://doi.org/10.1002/2017GL074954 
+% doi:10.1002/2017GL074954>. 
+% 
+% Morlighem, M., E. Rignot, T. Binder, D. D. Blankenship, R. Drews, G. Eagles,
+% O. Eisen, F. Ferraccioli, R. Forsberg, P. Fretwell, V. Goel, J. S. Greenbaum, H. 
+% Gudmundsson, J. Guo, V. Helm, C. Hofstede, I. Howat, A. Humbert, W. Jokat, N. B. 
+% Karlsson, W. Lee, K. Matsuoka, R. Millan, J. Mouginot, J. Paden, F. Pattyn, J. L. Roberts,
+% S. Rosier, A. Ruppel, H. Seroussi, E. C. Smith, D. Steinhage, B. Sun, M. R. van den Broeke, 
+% T. van Ommen, M. van Wessem, and D. A. Young. 2019. Deep glacial troughs and stabilizing 
+% ridges unveiled beneath the margins of the Antarctic ice sheet, Nature Geoscience.
+% <https://doi.org/10.1038/s41561-019-0510-8 doi:10.1016/j.cageo.2016.08.003>.
+%
+% Greene, C. A., Gwyther, D. E., & Blankenship, D. D. Antarctic Mapping Tools  
+% for Matlab. _Computers & Geosciences_. 104 (2017) pp.151-157. 
+% <http://dx.doi.org/10.1016/j.cageo.2016.08.003 doi:10.1016/j.cageo.2016.08.003>.
+% 
+%% Author Info
+% This function and supporting documentation were written by Chad A. Greene
+% of NASA Jet Propulsion Laboratory, April 2021. 
+
+##### SOURCE END #####
+--></body></html>

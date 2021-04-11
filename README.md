@@ -1,6 +1,6 @@
 # BedMachine Tools for MATLAB
 
-<center><img src="BedMachine.png" width="300"/></center>
+<p align="center"><img src="BedMachine.png" width="300"/></p>
 
 Matlab tools for loading, interpolating, and displaying BedMachine ice sheet topography.
 
@@ -10,15 +10,15 @@ Matlab tools for loading, interpolating, and displaying BedMachine ice sheet top
 
 ## Contents 
 * **`bedmachine_data`** loads the gridded data. 
-<center><img src="documentation/html/bedmachine_data_documentation_08.png" width="300"/></center>
+<p align="center"><img src="documentation/html/bedmachine_data_documentation_08.png" width="300"/></p>
 * **`bedmachine_interp`** interpolates surface elevation, thickness, bed, etc at any locations. 
-<center><img src="documentation/html/bedmachine_interp_documentation_02.png" width="300"/></center>
+<p align="center"><img src="documentation/html/bedmachine_interp_documentation_02.png" width="300"/></p>
 * **`bedmachine`** plots BedMachine data as imagesc or contour. 
-<center><img src="documentation/html/bedmachine_documentation_06.png" width="300"/></center>
+<p align="center"><img src="documentation/html/bedmachine_documentation_06.png" width="300"/></p>
 * **`bedmachine_profile`** creates a profile slice along a straight line such as a ship track or flowline. 
-<center><img src="documentation/html/bedmachine_profile_documentation_10.png" width="300"/></center>
+<p align="center"><img src="documentation/html/bedmachine_profile_documentation_10.png" width="300"/></p>
 * **`bedmachine_3d`** creates a 3D map of BedMachine data. 
-<center><img src="documentation/html/bedmachine_3d_documentation_08.png" width="300"/></center>
+<p align="center"><img src="documentation/html/bedmachine_3d_documentation_08.png" width="300"/></p>
 
 ##Citing this dataset
 

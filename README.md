@@ -11,6 +11,7 @@ Matlab tools for loading, interpolating, and displaying BedMachine ice sheet top
 ## Contents 
 * **`bedmachine_data`** loads the gridded data. 
 <p align="center"><img src="documentation/html/bedmachine_data_documentation_08.png" width="300"/></p>
+
 * **`bedmachine_interp`** interpolates surface elevation, thickness, bed, etc at any locations. 
 <p align="center"><img src="documentation/html/bedmachine_interp_documentation_02.png" width="300"/></p>
 * **`bedmachine`** plots BedMachine data as imagesc or contour. 

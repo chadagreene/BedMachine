@@ -24,7 +24,7 @@ Matlab tools for loading, interpolating, and displaying BedMachine ice sheet top
 * **`bedmachine_3d`** creates a 3D map of BedMachine data. 
 <p align="center"><img src="documentation/html/bedmachine_3d_documentation_08.png" width="300"/></p>
 
-##Citing this dataset
+## Citing this dataset
 
 If you use BedMachine data, please cite the Morlighem paper listed below. And if this function is useful for you, please do me a kindness and cite my Antarctic Mapping Tools paper.
 

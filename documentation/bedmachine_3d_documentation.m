@@ -19,6 +19,7 @@
 %  bedmachine_3d(xlim,ylim)
 %  bedmachine_3d(...,'buffer',extrakm)
 %  bedmachine_3d(...,'alpha',iceAlpha)
+%  bedmachine_3d(...,'velocity',res_km)
 %  bedmachine_3d(...,'greenland')
 %  h = bedmachine_3d(...)
 % 
@@ -41,6 +42,11 @@
 % |iceAlpha=1|, meaning fully opaque. Use a value between 0 and 1 for semitransparent
 % ice. 
 %
+% |bedmachine_3d(...,'velocity',res_km)| overlays ITS_LIVE velocity vectors at 
+% the specified spatial resolution |res_km| in kilometers. This option might be 
+% somewhat slow to render, especially for large regions. Requires ITS_LIVE Matlab 
+% toolbox (on File Exchange and GitHub). 
+% 
 % |bedmachine_3d(...,'greenland')| plots Greenland instead of the default Antarctica. 
 %
 % |h = bedmachine_3d(...)| returns a structure of all the object graphical handles. 
@@ -298,12 +304,43 @@ h.base.FaceAlpha = .9;
 caxis([-3 3]) 
 cmocean balance 
 cb = colorbar; 
-ylabel(cb,'melt rate (m/yr)') 
+ylabel(cb,'basal melt rate (m/yr)') 
 
 %%
 % Or of course you can always change it to a 2D view: 
 
 view(2)
+
+%% Example 8: ITS_LIVE velocity vectors 
+% If you have the ITS_LIVE toolbox (on GitHub and File Exchange), you can easily overlay
+% velocity vectors on the surface. Just use the |'velocity'| option, and specify
+% the spatial resolution (in kilometers) of the velocity vectors you'd like to 
+% plot. Here's Drygalski Ice Tongue, with a 50 km buffer around it, and velocity
+% vectors plotted at 2 km resolution. 
+
+% Get the outline of Drygalski Ice Tongue: 
+[lat,lon] = antbounds_data('drygalski');
+
+figure
+h = bedmachine_3d(lat,lon,'buffer',50,'velocity',2); 
+
+caxis([-1 1]*1100) % bed topography color limits 
+daspect([1 1 1/15]) % 15x vertical exaggeration
+view(-47,20) % viewing angle 
+
+% Make the ocean a little more opaque: 
+h.oceansfz.FaceAlpha = 0.3; 
+h.oceanside.FaceAlpha = 0.3;
+
+%% 
+% Changing the properties of the vectors is pretty straightforward. Set the 
+% color and linewidth, etc to your liking. Also, in addition to setting the 
+% spatial resolution of the velocity vectors, note that you can also lengthen
+% the arrows by changing the AutoScaleFactor. The default AutoScaleFactor is 0.9, 
+% so below we set it to 2, which more than doubles the length of each arrow. 
+
+h.vel.Color = rgb('purple'); 
+h.vel.AutoScaleFactor = 2; 
 
 %% Extra tips 
 % 
@@ -323,8 +360,6 @@ view(2)
 % understand the argument in favor of low-res graphics. 
 
 %% Known issues 
-% * The function currently only plots the primary (largest) ice mass within 
-% the extents of any given map. 
 % * Depending on the spatial extents of the map, the function sometimes has 
 % difficulty finding the proper outline of the ocean. In such cases, the surface
 % of the ocean may vanish. In such cases, you can either adjust the extents of 

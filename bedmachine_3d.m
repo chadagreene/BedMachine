@@ -19,6 +19,7 @@ function h = bedmachine_3d(lati_or_xi,loni_or_yi,varargin)
 %  bedmachine_3d(xlim,ylim)
 %  bedmachine_3d(...,'buffer',extrakm)
 %  bedmachine_3d(...,'alpha',iceAlpha)
+%  bedmachine_3d(...,'velocity',res_km) 
 %  bedmachine_3d(...,'greenland')
 %  h = bedmachine_3d(...)
 % 
@@ -40,6 +41,11 @@ function h = bedmachine_3d(lati_or_xi,loni_or_yi,varargin)
 % bedmachine_3d(...,'alpha',iceAlpha) sets the transparency of the ice. By default, 
 % iceAlpha=1, meaning fully opaque. Use a value between 0 and 1 for semitransparent
 % ice. 
+%
+% bedmachine_3d(...,'velocity',res_km) overlays ITS_LIVE velocity vectors at 
+% the specified spatial resolution res_km in kilometers. This option might be 
+% somewhat slow to render, especially for large regions. Requires ITS_LIVE Matlab 
+% toolbox (on File Exchange and GitHub). 
 %
 % bedmachine_3d(...,'greenland') plots Greenland instead of the default Antarctica. 
 %
@@ -73,7 +79,6 @@ function h = bedmachine_3d(lati_or_xi,loni_or_yi,varargin)
 % 
 % See also bedmachine_profile and bedmachine_data. 
 
-
 %% Input checks: 
 
 assert(nargin>=2,'Plotting the entire continent might be slow, so you must define a region of interest.') 
@@ -82,6 +87,9 @@ assert(license('test','image_toolbox')==1,'Sorry, this function requires the ima
 
 % Set defaults: 
 iceAlpha = 1; % transparency of ice. 0=invisible; 1=opaque. 
+oceanAlpha = 0.1; 
+make_quiver = false; 
+
 buf = 0; 
 IceSheet = 'antarctica'; 
 
@@ -100,6 +108,18 @@ if nargin>2
    
    if any(strncmpi(varargin,'greenland',4))
       IceSheet = 'greenland';    
+   end
+   
+   tmp = strncmpi(varargin,'velocity',3); 
+   if any(tmp)
+      make_quiver = true; 
+      assert(exist('itslive_interp.m','file')==2,'Cannot find itslive_interp. To plot velocity vectors, you must have itslive installed.')
+      try
+         res_km = varargin{find(tmp)+1}; 
+      catch
+         error('To plot velocity vectors, specify a spatial resolution in kilometers.') 
+      end
+      assert(isscalar(res_km) & res_km<1000,'The spatial resolution of the velocity arrows must be a scalar value in kilometers.') 
    end
 end
    
@@ -192,14 +212,15 @@ h.bedside.FaceColor = 'k';
 h.oceansfz = patch(xo,yo,zeros(size(xo)),'b'); 
 h.oceansfz.EdgeColor = [0.0118    0.4431    0.6118]; 
 h.oceansfz.FaceColor = [0.0118    0.4431    0.6118]; 
-h.oceansfz.FaceAlpha = 0.1; 
+h.oceansfz.FaceAlpha = oceanAlpha; 
+h.oceansfz.SpecularStrength = 1;
 
 % Plot ocean side: 
 h.oceanside = surface([xo xo],[yo yo],[bedo zeros(size(bedo))]); 
 h.oceanside.EdgeColor = 'none'; 
 h.oceanside.FaceColor = [0.0118    0.4431    0.6118]; 
-h.oceanside.FaceAlpha = 0.1; 
-h.oceansfz.SpecularStrength = 1;
+h.oceanside.FaceAlpha = oceanAlpha; 
+h.oceanside.SpecularStrength = 1;
 
 % plot ocean corners: 
 if bed(1,1)<0
@@ -213,6 +234,47 @@ if bed(1,end)<0
 end
 if bed(end,end)<0
    h.corner(4) = plot3(X(end,end)*[1 1],Y(end,end)*[1 1],[0 bed(end,end)],'color',[0.0118    0.4431    0.6118]); 
+end
+
+if make_quiver
+   
+   % Make a 100 m grid that fully covers the domain, plus 10 km on all sides:  
+   [Xv,Yv] = meshgrid((x(1)-10e3):200:(x(end)+10e3),(y(1)+10e3):-200:(y(end)-10e3));
+   
+   % Get velocity and surface elevation of the dense grid: 
+   vx = itslive_interp('vx',Xv,Yv,'region',IceSheet(1:3)); 
+   vy = itslive_interp('vy',Xv,Yv,'region',IceSheet(1:3)); 
+   
+   % Fill in missing (mostly ocean) data: 
+   vx = regionfill(vx,isnan(vx)); 
+   vy = regionfill(vy,isnan(vy)); 
+   
+   Z = bedmachine_interp('surface',Xv,Yv,IceSheet); 
+   Z2 = bedmachine_interp('surface',Xv+vx,Yv+vy,IceSheet); 
+   
+   Z = regionfill(Z,Z==0); 
+   Z2 = regionfill(Z2,Z2==0); 
+
+   % Scale factor for resizing: 
+   sc = 0.200/res_km; 
+   Xr = imresize(Xv,sc); 
+   Yr = imresize(Yv,sc); 
+   vxr = imresize(vx,sc); 
+   vyr = imresize(vy,sc); 
+   Zr = imresize(Z,sc); 
+   dZr = imresize(Z2-Z,sc); 
+   
+   % NaN the ocean: 
+   ocean = bedmachine_interp('mask',Xr,Yr,IceSheet)==0 | Xr<x(1) | Xr>x(end) | Yr>y(1) | Yr<y(end); 
+   Xr(ocean) = nan; 
+   Yr(ocean) = nan; 
+   vxr(ocean) = nan; 
+   vyr(ocean) = nan; 
+   Zr(ocean) = nan; 
+   dZr(ocean) = nan; 
+   
+   % Plot vectors: 
+   h.vel = quiver3(Xr,Yr,Zr,vxr,vyr,dZr,'r'); 
 end
 
 % Set lighting parameters:

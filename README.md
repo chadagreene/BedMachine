@@ -1,3 +1,4 @@
+[![View BedMachine on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/69159-bedmachine)
 # BedMachine Tools for MATLAB
 
 <p align="center"><img src="BedMachine.png" width="300"/></p>

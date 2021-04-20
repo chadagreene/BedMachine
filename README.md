@@ -6,7 +6,7 @@
 Matlab tools for loading, interpolating, and displaying BedMachine ice sheet topography.
 
 ## Requirements 
-* [Antarctic Mapping Tools for Matlab](https://www.mathworks.com/matlabcentral/fileexchange/47638) (Greene et al., 2017) or [Arctic Mapping Tools](https://www.mathworks.com/matlabcentral/fileexchange/63324) if you're analyzing Greenland.
+* [Antarctic Mapping Tools for Matlab](https://github.com/chadagreene/Antarctic-Mapping-Tools) (Greene et al., 2017) or [Arctic Mapping Tools](https://www.mathworks.com/matlabcentral/fileexchange/63324) if you're analyzing Greenland.
 * BedMachine data for [Greenland](https://nsidc.org/data/IDBMG4) or [Antarctica](https://nsidc.org/data/nsidc-0756) (Morlighem et al., 2017 & 2019).
 
 ## Contents 

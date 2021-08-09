@@ -117,7 +117,7 @@ assert(~isnumeric(variable),'Error: variable must be a string, e.g. ''bed'', ''s
 
 % NOTE: To update the dataset filename manually, change it here:
 
-GreenlandFilename = 'BedMachineGreenland-2017-09-20.nc';
+GreenlandFilename = 'BedMachineGreenland-2021-04-20.nc';
 %AntarcticaFilename = 'BedMachineAntarctica_2019-11-05_v01.nc'; % the OG
 AntarcticaFilename = 'BedMachineAntarctica_2020-07-15_v02.nc'; 
 

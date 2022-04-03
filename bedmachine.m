@@ -87,6 +87,7 @@ end
 
 outline = true; 
 contourplot = false; 
+IceSheet = 'antarctica'; 
 
 %% Parse inputs
 
@@ -99,6 +100,12 @@ if nargin>0
    if any(tmp)
       contourplot = true; 
       varargin = varargin(~tmp); 
+   end
+   
+   tmp = strncmpi(varargin,'greenland',4); 
+   if any(tmp)
+      IceSheet = 'greenland';   
+      varargin = varargin(~tmp);  
    end
 end
 
@@ -117,8 +124,8 @@ ax = axis;
 if outline
    
    % Load bedmachine-derived outlines: 
-   [x,y] = bedmachine_data(variable); 
-   
+   [x,y] = bedmachine_data(variable,IceSheet); 
+
    if mapwasopen
       OutOfBounds = x<ax(1) | x>ax(2) | y<ax(3) | y>ax(4); 
       x(OutOfBounds) = NaN; % trims away everything outside current map extents while keeping the nans that separate different sections of the outline 
@@ -130,10 +137,11 @@ if outline
    h = plot(x,y,varargin{:}); 
 else
    
+
    if mapwasopen
-      [Z,x,y] = bedmachine_data(variable,ax(1:2),ax(3:4)); 
+      [Z,x,y] = bedmachine_data(variable,ax(1:2),ax(3:4),IceSheet); 
    else
-      [Z,x,y] = bedmachine_data(variable); 
+      [Z,x,y] = bedmachine_data(variable,IceSheet); 
    end
    
    if contourplot

@@ -120,6 +120,7 @@ assert(~isnumeric(variable),'Error: variable must be a string, e.g. ''bed'', ''s
 GreenlandFilename = 'BedMachineGreenland-2021-04-20.nc';
 %AntarcticaFilename = 'BedMachineAntarctica_2019-11-05_v01.nc'; % the OG
 AntarcticaFilename = 'BedMachineAntarctica_2020-07-15_v02.nc'; 
+%AntarcticaFilename = 'BedMachineAntarctica-2021-03-03.nc';
 
 subset = false;  % use whole data set (not a regional subset) by default 
 extrakm = 0;     % zero buffer by default
@@ -302,9 +303,16 @@ switch lower(variable)
       % [x1,y1] = C2xyz; 
       % gl = polyshape(x1,y1); 
       
-      P = load('BedMachine_Antarctica_v1_outlines.mat','gl'); 
-      x = P.gl.Vertices(:,1); 
-      y = P.gl.Vertices(:,2); 
+      switch IceSheet
+         case 'antarctica'
+            P = load('BedMachine_Antarctica_v1_outlines.mat','gl'); 
+            x = P.gl.Vertices(:,1); 
+            y = P.gl.Vertices(:,2); 
+         case 'greenland'
+            B = load('BedMachine_Greenland_gl.mat'); 
+            x = B.glx; 
+            y = B.gly; 
+      end
       
    case 'coast'
       assert(nargout==2,'Error: For coast line, outputs must be [lat_or_x,lon_or_y] = bedmachine_data(''coast'')')

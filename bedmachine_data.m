@@ -117,10 +117,13 @@ assert(~isnumeric(variable),'Error: variable must be a string, e.g. ''bed'', ''s
 
 % NOTE: To update the dataset filename manually, change it here:
 
-GreenlandFilename = 'BedMachineGreenland-2021-04-20.nc';
+%GreenlandFilename = 'BedMachineGreenland-2021-04-20.nc';
+GreenlandFilename = 'BedMachineGreenland-v5.nc'; % released 2022-09-08
 %AntarcticaFilename = 'BedMachineAntarctica_2019-11-05_v01.nc'; % the OG
-AntarcticaFilename = 'BedMachineAntarctica_2020-07-15_v02.nc'; 
+%AntarcticaFilename = 'BedMachineAntarctica_2020-07-15_v02.nc'; 
 %AntarcticaFilename = 'BedMachineAntarctica-2021-03-03.nc';
+AntarcticaFilename = 'BedMachineAntarctica-v3.nc';
+
 
 subset = false;  % use whole data set (not a regional subset) by default 
 extrakm = 0;     % zero buffer by default

@@ -139,6 +139,11 @@ end
 [Z,x,y] = bedmachine_data(variable,xi,yi,...
    'buffer',2,IceSheet,'datum',datum,'xy'); 
 
+% mask out ocean for thickness or surface (to prevent interpolating at the 0 nan boundary) 
+if ismember(variable(1:3),{'thi','sur'})
+   mask = bedmachine_data('mask',xi,yi,'buffer',2,IceSheet,'xy'); 
+   Z(mask==0) = nan; 
+end
 %% Interpolate: 
 
 % Use FastInterp (a subfunction below) only if 'linear','bilinear', or 'nearest' AND number of query points is fewer than 10^4. 

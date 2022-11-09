@@ -38,9 +38,10 @@ function varargout = bedmachine_data(variable,varargin)
 %    * 'bed'       meters relative to EIGEN-EC4 geoid.
 %    * 'errbed'    meters 
 %    * 'firn'      meters firn air thickness (must be added to surface or thickness for true) 
-%    * 'source'    Greenland: 0 = none, 1 = gimpdem, 2 = Mass conservation, 3 = synthetic, 4 = interpolation, 5 = hydrostatic equilibrium, 6 = kriging, 7 = RTOPO-2, 8 = gravity inversion, 10+ = bathymetry data)
-%                  Antarctic: 1 = REMA/IBCSO, 2 = Mass conservation, 3 = interpolation, 4 = hydrostatic, 5 = Kriging, 6 = gravity inversion
+%    * 'source'    Greenland: 0 = none, 1 = gimpdem, 2 = Mass conservation, 3 = synthetic, 4 = interpolation, 5 = hydrostatic equilibrium, 6 = kriging, 7 = RTOPO-2, 8 = gravity inversion, 9 = Millan et al. 2021, 10+ = bathymetry data)
+%                  Antarctic: 1 = REMA/IBCSOv2, 2 = Mass conservation, 3 =interpolation, 4 = hydrostatic, 5 = streamline diffusion, 6 = gravity inversion, 7=seismic, 10=multibeam  
 %    * 'geoid'     meters above WGS84 ellipsoid
+%    * 'dataid'    1=GIMPdem or REMA, 2=Radar, 7=seismic, 10=multibeam
 %    * 'base'      meters base of the ice sheet (bottom of ice shelves, but same as bed over grounded ice.) 
 %    * 'wct'       meters water column thickness (derived, not an official BedMachine product.) 
 %    * 'taf'       meters thickness above flotation (derived, not an official BedMachine product.) 

@@ -95,7 +95,7 @@ assert(isequal(size(lati_or_xi),size(loni_or_yi)),'Error: Dimensions of input co
 %% Set Defaults: 
 
 IceSheet = 'antarctica'; 
-datum = 'geoid'; 
+datum    = 'geoid'; 
 
 % Interpolation method: 
 if ismember(variable,{'mask','source','dataid'})
@@ -110,11 +110,11 @@ end
 if islatlon(lati_or_xi,loni_or_yi)
    % Check hemisphere: 
    if any(lati_or_xi(:)>0)
-      [xi,yi] = ll2psn(lati_or_xi,loni_or_yi); % The ll2psn function is part of Arctic Mapping Tools package, the lesser known sibling of Antarctic Mapping Tools. 
+      [xi,yi]  = ll2psn(lati_or_xi,loni_or_yi); % The ll2psn function is part of Arctic Mapping Tools package, the lesser known sibling of Antarctic Mapping Tools. 
       IceSheet = 'greenland'; 
    else
       IceSheet = 'antarctica'; % This might be declared explicitly by the user later, but just in case they forget, this will do what they probably want to do. 
-      [xi,yi] = ll2ps(lati_or_xi,loni_or_yi); % The ll2ps function is in the Antarctic Mapping Tools package.
+      [xi,yi]  = ll2ps(lati_or_xi,loni_or_yi); % The ll2ps function is in the Antarctic Mapping Tools package.
    end
 else 
    xi = lati_or_xi;
@@ -130,9 +130,9 @@ end
    
 
 % Check datum: 
-tmp = strncmpi(varargin,'datum',3); 
+tmp         = strncmpi(varargin,'datum',3); 
 if any(tmp)
-   datum = varargin{find(tmp)+1}; 
+   datum    = varargin{find(tmp)+1}; 
 end
 
 %% Load data: 
@@ -194,7 +194,7 @@ switch lower(method(1:3))
    flag = rxi>0 & rxi<=N & ~isnan(rxi) & ryi>0 & ryi<=M & ~isnan(ryi);
    
    % Map subscripts to indices:
-   ind = ryi + M*(rxi-1);
+   ind      = ryi + M*(rxi-1);
    zi(flag) = z(ind(flag));
 
    case {'lin','bil'} % allows 'linear', 'lin', or 'bilinear'

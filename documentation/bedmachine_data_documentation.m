@@ -15,7 +15,7 @@
 % * *For Antarctica:* 
 %
 % # <https://www.mathworks.com/matlabcentral/fileexchange/47638 Antarctic Mapping Tools> 
-% # <https://nsidc.org/data/nsidc-0756 Antarctic Bedmachine Data>
+% # <https://nsidc.org/data/nsidc-0756/versions/4 Antarctic Bedmachine Data>
 % 
 %% Syntax 
 % 
@@ -44,6 +44,7 @@
 % * |'source'|    Greenland: 0 = none, 1 = gimpdem, 2 = Mass conservation, 3 = synthetic, 4 = interpolation, 5 = hydrostatic equilibrium, 6 = kriging, 7 = RTOPO-2, 8 = gravity inversion, 10+ = bathymetry data)
 % * |'source'|    Antarctic: 1 = REMA/IBCSO, 2 = Mass conservation, 3 = interpolation, 4 = hydrostatic, 5 = Kriging, 6 = gravity inversion
 % * |'geoid'|     meters above WGS84 ellipsoid
+% * |'rgi'|       glacier outlines from RGI-v7.0 
 % * |'base'|      meters base of the ice sheet (bottom of ice shelves, but same as bed over grounded ice.) 
 % * |'wct'|       meters water column thickness (derived, not an official BedMachine product.) 
 % * |'taf'|       meters thickness above flotation (derived, not an official BedMachine product.) 

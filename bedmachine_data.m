@@ -13,7 +13,7 @@ function varargout = bedmachine_data(variable,varargin)
 % 
 % * For Antarctica: *
 % Antarctic Mapping Tools: https://www.mathworks.com/matlabcentral/fileexchange/47638
-% Antarctic Bedmachine Data: https://nsidc.org/data/nsidc-0756
+% Antarctic Bedmachine Data: https://nsidc.org/data/nsidc-0756/versions/4
 % 
 %% Syntax 
 % 
@@ -42,6 +42,7 @@ function varargout = bedmachine_data(variable,varargin)
 %                  Antarctic: 1 = REMA/IBCSOv2, 2 = Mass conservation, 3 =interpolation, 4 = hydrostatic, 5 = streamline diffusion, 6 = gravity inversion, 7=seismic, 10=multibeam  
 %    * 'geoid'     meters above WGS84 ellipsoid
 %    * 'dataid'    1=GIMPdem or REMA, 2=Radar, 7=seismic, 10=multibeam
+%    * 'rgi'       glacier outlines from RGI-v7.0 
 %    * 'base'      meters base of the ice sheet (bottom of ice shelves, but same as bed over grounded ice.) 
 %    * 'wct'       meters water column thickness (derived, not an official BedMachine product.) 
 %    * 'taf'       meters thickness above flotation (derived, not an official BedMachine product.) 
@@ -125,8 +126,8 @@ GreenlandFilename = 'BedMachineGreenland-v6.4.nc'; % personal email from Mathieu
 %AntarcticaFilename = 'BedMachineAntarctica_2020-07-15_v02.nc'; 
 %AntarcticaFilename = 'BedMachineAntarctica-2021-03-03.nc';
 %AntarcticaFilename = 'BedMachineAntarctica-v3.nc';
-AntarcticaFilename = 'BedMachineAntarctica-v4.0.nc';
-
+%AntarcticaFilename = 'BedMachineAntarctica-v4.0.nc';
+AntarcticaFilename = 'NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc';
 
 subset = false;  % use whole data set (not a regional subset) by default 
 extrakm = 0;     % zero buffer by default
